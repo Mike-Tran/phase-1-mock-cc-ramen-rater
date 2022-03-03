@@ -23,23 +23,25 @@ function renderRamenImages(ramenMenu) {
 
 function renderRamenImage(ramen) {
     const ramenElement = document.createElement('img');
+    ramenElement.src = ramen.image;
+    ramenElement.addEventListener('click', () => updateRamenDetails(ramen));
+
+    ramenMenuContainer.append(ramenElement);
+}
+
+function updateRamenDetails(ramenItem) {
     const ramenDetailImage = ramenDetails.querySelector('.detail-image');
     const ramenDetailName = ramenDetails.querySelector('.name');
     const ramenDetailRestaurant = ramenDetails.querySelector('.restaurant');
-    ramenElement.src = ramen.image;
-    ramenMenuContainer.append(ramenElement);
 
-    // add event handler for ramen image
-    ramenElement.addEventListener('click', function() {
-        // add details about clicked ramen
-        ramenDetailImage.src = ramen.image;
-        ramenDetailName.textContent = ramen.name;
-        ramenDetailRestaurant.textContent = ramen.restaurant;
-        ramenDetails.querySelector('.detail-image').src = ramen.image;
+    // add details about clicked ramen
+    ramenDetailImage.src = ramenItem.image;
+    ramenDetailName.textContent = ramenItem.name;
+    ramenDetailRestaurant.textContent = ramenItem.restaurant;
 
-        ramenComment.textContent = ramen.comment;
-        ramenRating.textContent = ramen.rating;
-    })
+    ramenComment.textContent = ramenItem.comment;
+    ramenRating.textContent = ramenItem.rating;
+
 }
 
 function addNewRamen(event) {
